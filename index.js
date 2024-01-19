@@ -102,6 +102,18 @@ app.put("/fruits/:id", function (req, res) {
   res.send("Sorry, fruit not found.");
 });
 
+// DELETE /fruits/:id
+
+app.delete("/fruits/:id", (req, res) => {
+  for (let i = 0; i < fruits.length; i++) {
+    if (fruits[i].id == req.params.id) {
+      fruits.splice(i, 1);
+      return res.json({ message: "Fruit deleted" });
+    }
+  }
+  res.json({ message: "No fruit found" });
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
